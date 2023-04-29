@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 싱글톤 만들 때는 여기서 @Component와 같은 어노테이션 -->
+	
+	<!-- 1) mybatis -->
+	<!-- SqlSessionTemplate my = new SqlSessionTemplate(config) -->
+	<bean id="my" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="config"></constructor-arg> <!-- 생성자 config가 있어야 my객체가 생성된다는 의미 -->
+	</bean>
+	
+	<!-- 2) DBCP -->
+	<!-- DBCP dbcp = new DBCP();
+		dbcp.setDriverClassName= "com.mysql.cj~~~";
+		dbcp.setURL = "jdbc:mysql:~~~";
+		dbcp.setUsername = "root";
+		dbcp.setPassword = "1234";
+		jdbc의 1,2단계를 담당해주는 클래스
+	-->
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/multi?serverTimezone=UTC"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="1234"></property>
+	</bean>
+	
+	<!-- 3) mybatis config -->
+	<!-- classpath란 src/main/resources를 지정한다. -->
+	<bean id="config" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dbcp"></property>
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+	
+	
+</beans>
