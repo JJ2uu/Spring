@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	div {
+		margin-bottom: 30px;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<h3>게시글 작성</h3>
+		<hr>
+		<form action="bbs_insert" method="get">
+			title : <input name="title"><br>
+			content : <input name="content"><br>
+			writer : <input name="writer"><br>
+			<button type="submit">서버로 전송</button>
+		</form>
+	</div>
+	<div>
+		<h3>게시글 수정</h3>
+		<hr>
+		<form action="bbs_update" method="get">
+			title : <input name="title"><br>
+			no : <input name="no"><br>
+			<button type="submit">서버로 전송</button>
+		</form>
+	</div>
+	<div>
+		<h3>게시글 삭제</h3>
+		<hr>
+		<form action="bbs_delete" method="get">
+			no : <input name="no"><br>
+			<button type="submit">서버로 전송</button>
+		</form>
+	</div>
+	<a href ="login.jsp">
+		<button>로그인 하러 가기</button>
+	</a>
+	<div>
+		<h3>게시글 검색</h3>
+		<hr>
+		<form action="bbs_one" method="get">
+			title : <input name="title"><br>
+			<button type="submit">서버로 전송</button>
+		</form>
+	</div>
+	<a href = "bbs_list">게시글 전체 목록</a>
+	<hr>
+</body>
+</html>
